@@ -1,4 +1,4 @@
-import type {CourseModel} from "./src/models/CourseModel.ts";
+import type {CourseModel} from "./models/CourseModel.ts";
 
 export const coursesAndDurationArray: CourseModel[] = [
     {title: 'JavaScript Complex', monthDuration: 5},
