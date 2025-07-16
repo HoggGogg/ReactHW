@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import type {IUser} from "../../models/IUser.ts";
-import UserComponents from "../user-comp/UserComponents.tsx";
+import UserComponents from "../UserComponents/UserComponents.tsx";
 
 const UsersComponent = () => {
     const [users, setUsers] = useState<IUser[]>([]);
