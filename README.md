@@ -67,3 +67,5 @@ export default tseslint.config([
   },
 ])
 ```
+
+[//]: # (VITE_API_BASE_URL=https://jsonplaceholder.typicode.com/posts)
