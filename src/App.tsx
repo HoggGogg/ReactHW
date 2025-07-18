@@ -1,11 +1,12 @@
 import './App.css'
+import {Products} from "./components/Products.tsx";
 
-function App() {
-
-
+const App = () => {
     return (
-        <></>
+        <div>
+            <Products/>
+        </div>
     );
-}
+};
 
-export default App
+export default App;
