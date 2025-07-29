@@ -1,4 +1,6 @@
 import {useForm} from "react-hook-form";
+import {joiResolver} from "@hookform/resolvers/joi";
+import {userValidator} from "../validator/user.validator.ts";
 
 interface IFormProps {
     username: string,
@@ -9,13 +11,8 @@ interface IFormProps {
 
 export const FormComponent = () => {
 
-    const {
-        handleSubmit,
-        register,
-        formState: {errors, isValid}
-    } = useForm<IFormProps>({
-        mode: 'all'
-    });
+    const {handleSubmit, register, formState: {errors, isValid}} =
+        useForm<IFormProps>({mode: 'all', resolver: joiResolver(userValidator)});
 
     const costomHandler = (formDataProps: IFormProps) => {
         console.log(formDataProps);
@@ -25,55 +22,20 @@ export const FormComponent = () => {
             <form onSubmit={handleSubmit(costomHandler)}>
 
                 <label>
-                    <input type="text" {...register("username", {
-                        required: {
-                            value: true,
-                            message: 'name is required'
-                        },
-                        // pattern:
-                        //     {
-                        //         value: /\w+/,
-                        //         message: 'wrong name'
-                        //     }
-                        minLength: {
-                            value: 4,
-                            message: 'wrong name'
-                        }
-                    })}/>
+                    <input type="text" {...register("username")}/>
                     {errors.username && <div>{errors.username.message}</div>}
                 </label>
 
                 <label>
-                    <input type="text" {...register("password", {
-                        required: true,
-                        minLength: {
-                            value: 3,
-                            message: 'pass too short'
-                        },
-                        maxLength: {
-                            value: 6,
-                            message: 'pass too long'
-                        }
-                    })}/>
+                    <input type="text" {...register("password")}/>
                     {errors.password && <div>{errors.password.message}</div>}
                 </label>
 
                 <label>
-                    <input type={"number"} {...register("age", {
-                        required: true,
-                        valueAsNumber: true,
-                        min: {
-                            value: 1,
-                            message: 'age too small'
-                        },
-                        max: {
-                            value: 120,
-                            message: 'age too long'
-                        }
-
-                    })}/>
+                    <input type={"number"} {...register("age")}/>
                     {errors.age && <div>{errors.age.message}</div>}
                 </label>
+
                 <button disabled={!isValid}>send</button>
             </form>
         </div>
